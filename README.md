@@ -1,7 +1,11 @@
+# 🐬 Proyecto Dolphin Smalltalk – LUBRICENTRO
 
-Las clases van dentro de la carpeta "Clases"
+## 📁 Estructura del Proyecto
 
- Al trabajar en una nueva clase haganlo en la rama 'develop' y cuando esté lista pusheen los cambios y hagan el pull request hacia el main.
+- Todas las clases deben estar ubicadas dentro de la carpeta:
+- /Clases
+  
+## Para desarrollar usen la rama 'develop' y cuando esté lista manden el pull request
 
   Para crear una clase hay que definir:
     initialize (instancia) --> Setea variables 
