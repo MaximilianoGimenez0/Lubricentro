@@ -20,29 +20,31 @@
 ```smalltalk
 
 1)
-initialize: unNombre numero: unNumero direccion: unaDireccion cuit: unCuit
-	id := self class nextId.
-	nombre := unNombre.
-	numero := unNumero.
-	direccion := unaDireccion.
-	cuit := unCuit.
+initialize: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMonto cantidad: unCantidad
+	id := Venta nextId.  "Asigna el siguiente ID autoincremental"
+	empleado_id := unEmpleado .
+	cliente_id := unCliente .
+	articulo_id := unArticulo .
+	monto := unMonto.
+	cantidad := unCantidad.
 
 2)
-NombreClase class>>initialize
-	NextId := 1.
+initialize
+    UltimoID := 0. "ID de inicio"
 
 3)
-NombreClase class>>nextId
-	| idActual |
-	idActual := NextId.
-	NextId := NextId + 1.
-	^ idActual.
+nextId
+    UltimoID isNil ifTrue: [ UltimoID := 0 ].  "Verificar y asegurarse de que UltimoID no sea Nil"
+    UltimoID := UltimoID + 1.  "Incrementa el ID"
+    ^UltimoID.
 
 4)
-NombreClase class>>crearConNombre: unNombre numero: unNumero direccion: unaDireccion cuit: unCuit
+CrearConEmpleado: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMonto cantidad: unCantidad
 	^ self new
-		initialize: unNombre numero: unNumero direccion: unaDireccion cuit: unCuit;
+		initialize: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMonto cantidad: unCantidad;
 		yourself.
+	
+
 
 
 
