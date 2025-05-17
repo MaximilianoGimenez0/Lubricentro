@@ -158,9 +158,21 @@ Initialize
 NextId
 	UltimoID isNil ifTrue: [ UltimoID := 0 ].
 	UltimoID := UltimoID + 1.
-	^UltimoID.! !
+	^UltimoID.!
+
+RealizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id
+    | orden |
+    
+    orden := OrdenDeCompra new.
+    orden setEmpleadoId: empleado_id.
+    orden setArticuloId: articulo_id.
+    orden setCantidad: cantidad.
+    orden setProveedorId: proveedor_id.
+    
+    "llistaOrdenCompra add: orden."! !
 !Lubricentro class categoriesFor: #CrearBasicoConNombre:descripcion:!public! !
 !Lubricentro class categoriesFor: #CrearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
 !Lubricentro class categoriesFor: #Initialize!public! !
 !Lubricentro class categoriesFor: #NextId!public! !
+!Lubricentro class categoriesFor: #RealizarOrdenCompraEmpleado:articulo:cantidad:proveedor:!public! !
 
