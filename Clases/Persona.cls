@@ -10,20 +10,20 @@ Persona comment: ''!
 !Persona categoriesForClass!Kernel-Objects! !
 !Persona methodsFor!
 
-GetApellido
+getApellido
 	^ apellido.!
 
-GetDNI
-	^ dni.!
+getDNI
+	^dni!
 
-GetId
-	^ id.!
+getId
+	^id!
 
-GetNombre
-	^ nombre.!
+getNombre
+	^nombre!
 
-GetTelefono
-	^ telefono.!
+getTelefono
+	^telefono!
 
 initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	id := Persona nextId.
@@ -32,27 +32,27 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	dni := unDni.
 	telefono := unTelefono.!
 
-SetApellido: unApellido
-	apellido := unApellido.!
+setApellido: unApellido
+	apellido := unApellido!
 
-SetDNI: unDni
-	dni := unDni.!
+setDNI: unDni
+	dni := unDni!
 
-SetNombre: unNombre
-	nombre := unNombre.!
+setNombre: unNombre
+	nombre := unNombre!
 
-SetTelefono: unTelefono
-	telefono := unTelefono.! !
-!Persona categoriesFor: #GetApellido!public! !
-!Persona categoriesFor: #GetDNI!public! !
-!Persona categoriesFor: #GetId!public! !
-!Persona categoriesFor: #GetNombre!public! !
-!Persona categoriesFor: #GetTelefono!public! !
+setTelefono: unTelefono
+	telefono := unTelefono! !
+!Persona categoriesFor: #getApellido!public! !
+!Persona categoriesFor: #getDNI!public! !
+!Persona categoriesFor: #getId!public! !
+!Persona categoriesFor: #getNombre!public! !
+!Persona categoriesFor: #getTelefono!public! !
 !Persona categoriesFor: #initialize:apellido:dni:telefono:!public! !
-!Persona categoriesFor: #SetApellido:!public! !
-!Persona categoriesFor: #SetDNI:!public! !
-!Persona categoriesFor: #SetNombre:!public! !
-!Persona categoriesFor: #SetTelefono:!public! !
+!Persona categoriesFor: #setApellido:!public! !
+!Persona categoriesFor: #setDNI:!public! !
+!Persona categoriesFor: #setNombre:!public! !
+!Persona categoriesFor: #setTelefono:!public! !
 
 !Persona class methodsFor!
 
