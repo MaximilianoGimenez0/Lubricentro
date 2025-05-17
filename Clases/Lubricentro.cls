@@ -59,6 +59,13 @@ initializeConNombre: unNombre descripcion: unaDescrip listaVentas: unaListVent l
 	listaEmpleados := unaListEmple.
 	listaClientes := unaListClien.!
 
+realizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id precio: unPrecio
+    | orden |
+    
+	orden := OrdenDeCompra CrearConEmpleado: empleado_id proveedor_id: proveedor_id articulo_id: articulo_id cantidad: cantidad precio: unPrecio .
+
+	listaOrdenesCompra add: orden.!
+
 realizarVentaCliente: cliente_id empleado: empleado_id articulo: articulo_id cantidad: cantidad
     | venta monto articulo |
     
@@ -117,6 +124,7 @@ setVentas: unaLista
 !Lubricentro categoriesFor: #getVentas!accessing!public! !
 !Lubricentro categoriesFor: #initialize!public! !
 !Lubricentro categoriesFor: #initializeConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
+!Lubricentro categoriesFor: #realizarOrdenCompraEmpleado:articulo:cantidad:proveedor:precio:!public! !
 !Lubricentro categoriesFor: #realizarVentaCliente:empleado:articulo:cantidad:!public! !
 !Lubricentro categoriesFor: #setArticulos:!public! !
 !Lubricentro categoriesFor: #setClientes:!public! !
@@ -153,26 +161,15 @@ CrearConNombre: unNombre descripcion: unaDescrip listaVentas: unaListVent listaA
 		listaClientes: unaListClien!
 
 Initialize
-	UltimoID := 0.!
+	UltimoID := 0.
+!
 
 NextId
 	UltimoID isNil ifTrue: [ UltimoID := 0 ].
 	UltimoID := UltimoID + 1.
-	^UltimoID.!
-
-RealizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id
-    | orden |
-    
-    orden := OrdenDeCompra new.
-    orden setEmpleadoId: empleado_id.
-    orden setArticuloId: articulo_id.
-    orden setCantidad: cantidad.
-    orden setProveedorId: proveedor_id.
-    
-    "llistaOrdenCompra add: orden."! !
+	^UltimoID.! !
 !Lubricentro class categoriesFor: #CrearBasicoConNombre:descripcion:!public! !
 !Lubricentro class categoriesFor: #CrearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
 !Lubricentro class categoriesFor: #Initialize!public! !
 !Lubricentro class categoriesFor: #NextId!public! !
-!Lubricentro class categoriesFor: #RealizarOrdenCompraEmpleado:articulo:cantidad:proveedor:!public! !
 
