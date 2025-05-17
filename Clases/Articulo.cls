@@ -2,7 +2,7 @@
 
 Object subclass: #Articulo
 	instanceVariableNames: 'id tipo stock min_stock max_stock precio vencimiento elaboracion'
-	classVariableNames: ''
+	classVariableNames: 'UltimoID'
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
 Articulo guid: (GUID fromString: '{5FB8E21B-8B78-4F63-B399-D532A7E8E5D5}')!
@@ -27,6 +27,10 @@ getPrecio
 
 getStock
 	^ stock!
+
+getTipo
+	^ tipo
+!
 
 getVencimiento
 	^ vencimiento!
@@ -56,9 +60,23 @@ setPrecio: unPrecio
 !Articulo categoriesFor: #getMinStock!public! !
 !Articulo categoriesFor: #getPrecio!public! !
 !Articulo categoriesFor: #getStock!public! !
+!Articulo categoriesFor: #getTipo!public! !
 !Articulo categoriesFor: #getVencimiento!public! !
 !Articulo categoriesFor: #initialize!public! !
 !Articulo categoriesFor: #setMaxStock:!public! !
 !Articulo categoriesFor: #setMinStock:!public! !
 !Articulo categoriesFor: #setPrecio:!public! !
+
+!Articulo class methodsFor!
+
+Initialize
+	UltimoID := 0.
+	!
+
+NextId
+	UltimoID isNil ifTrue: [ UltimoID := 0 ].
+	UltimoID := UltimoID + 1.
+	^UltimoID.! !
+!Articulo class categoriesFor: #Initialize!public! !
+!Articulo class categoriesFor: #NextId!public! !
 
