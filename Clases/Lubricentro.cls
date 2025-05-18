@@ -59,10 +59,10 @@ initializeConNombre: unNombre descripcion: unaDescrip listaVentas: unaListVent l
 	listaEmpleados := unaListEmple.
 	listaClientes := unaListClien.!
 
-realizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id precio: unPrecio
+realizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id precio: unPrecio fecha: unFecha
     | orden |
     
-	orden := OrdenDeCompra CrearConEmpleado: empleado_id proveedor_id: proveedor_id articulo_id: articulo_id cantidad: cantidad precio: unPrecio .
+	orden := OrdenDeCompra CrearConEmpleado: empleado_id proveedor_id: proveedor_id articulo_id: articulo_id cantidad: cantidad precio: unPrecio fecha: unFecha.
 
 	listaOrdenesCompra add: orden.!
 
@@ -70,16 +70,20 @@ realizarVentaCliente: cliente_id empleado: empleado_id articulo: articulo_id can
     | venta monto articulo |
     
     articulo := listaArticulos detect: [:a | a getId = articulo_id] ifNone: [^self error: 'Artículo no encontrado'].
+    
     monto := articulo getPrecio * cantidad.
     
-    venta := Venta new.
-    venta setEmpleadoId: empleado_id.
-    venta setClienteId: cliente_id.
-    venta setArticuloId: articulo_id.
-    venta setCantidad: cantidad.
-    venta setMonto: monto.
+    venta := Venta 
+        CrearConEmpleado: empleado_id
+        cliente_id: cliente_id
+        articulo_id: articulo_id
+        monto: monto
+        cantidad: cantidad.
     
-    listaVentas add: venta.!
+    listaVentas add: venta.
+    
+    ^ venta
+!
 
 setArticulos: unaLista
 	listaArticulos := unaLista.
@@ -93,6 +97,10 @@ setDecripcion: unaDescripcion
 	descripcion := unaDescripcion.
 !
 
+SetDecripcion: unaDescripcion
+	descripcion := unaDescripcion.
+!
+
 setEmpleados: unaLista
 	listaEmpleados := unaLista.
 !
@@ -101,6 +109,9 @@ setId: unId
 	id := unId.!
 
 setNombre: unNombre
+	nombre := unNombre.!
+
+SetNombre: unNombre
 	nombre := unNombre.!
 
 setOrdenesCompra: unaLista
@@ -124,52 +135,62 @@ setVentas: unaLista
 !Lubricentro categoriesFor: #getVentas!accessing!public! !
 !Lubricentro categoriesFor: #initialize!public! !
 !Lubricentro categoriesFor: #initializeConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
-!Lubricentro categoriesFor: #realizarOrdenCompraEmpleado:articulo:cantidad:proveedor:precio:!public! !
+!Lubricentro categoriesFor: #realizarOrdenCompraEmpleado:articulo:cantidad:proveedor:precio:fecha:!public! !
 !Lubricentro categoriesFor: #realizarVentaCliente:empleado:articulo:cantidad:!public! !
 !Lubricentro categoriesFor: #setArticulos:!public! !
 !Lubricentro categoriesFor: #setClientes:!public! !
 !Lubricentro categoriesFor: #setDecripcion:!public! !
+!Lubricentro categoriesFor: #SetDecripcion:!public! !
 !Lubricentro categoriesFor: #setEmpleados:!public! !
 !Lubricentro categoriesFor: #setId:!public! !
 !Lubricentro categoriesFor: #setNombre:!public! !
+!Lubricentro categoriesFor: #SetNombre:!public! !
 !Lubricentro categoriesFor: #setOrdenesCompra:!public! !
 !Lubricentro categoriesFor: #setProveedores:!public! !
 !Lubricentro categoriesFor: #setVentas:!public! !
 
 !Lubricentro class methodsFor!
 
-CrearBasicoConNombre: unNombre descripcion: unaDescripcion
-	^self new
-		InitializeConNombre: unNombre
+crearBasicoConNombre: unNombre descripcion: unaDescripcion
+	^ self new
+		initializeConNombre: unNombre
 		descripcion: unaDescripcion
 		listaVentas: OrderedCollection new
 		listaArticulos: OrderedCollection new
 		listaOrdenesCompra: OrderedCollection new
 		listaProveedores: OrderedCollection new
 		listaEmpleados: OrderedCollection new
-		listaClientes: OrderedCollection new!
+		listaClientes: OrderedCollection new
+!
 
-CrearConNombre: unNombre descripcion: unaDescrip listaVentas: unaListVent listaArticulos: unaListArt listaOrdenesCompra: unaListaOrdCom listaProveedores: unaListProv listaEmpleados: unaListEmple listaClientes: unaListClien
-	^self new
-		InitializeConNombre: unNombre
+crearConNombre: unNombre 
+    descripcion: unaDescrip 
+    listaVentas: unaListVent 
+    listaArticulos: unaListArt 
+    listaOrdenesCompra: unaListaOrdCom 
+    listaProveedores: unaListProv 
+    listaEmpleados: unaListEmple 
+    listaClientes: unaListClien
+	^ self new
+		initializeConNombre: unNombre
 		descripcion: unaDescrip
 		listaVentas: unaListVent
 		listaArticulos: unaListArt
 		listaOrdenesCompra: unaListaOrdCom
 		listaProveedores: unaListProv
 		listaEmpleados: unaListEmple
-		listaClientes: unaListClien!
-
-Initialize
-	UltimoID := 0.
+		listaClientes: unaListClien
 !
 
-NextId
+initialize
+	UltimoID := 0.!
+
+nextId
 	UltimoID isNil ifTrue: [ UltimoID := 0 ].
 	UltimoID := UltimoID + 1.
 	^UltimoID.! !
-!Lubricentro class categoriesFor: #CrearBasicoConNombre:descripcion:!public! !
-!Lubricentro class categoriesFor: #CrearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
-!Lubricentro class categoriesFor: #Initialize!public! !
-!Lubricentro class categoriesFor: #NextId!public! !
+!Lubricentro class categoriesFor: #crearBasicoConNombre:descripcion:!public! !
+!Lubricentro class categoriesFor: #crearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
+!Lubricentro class categoriesFor: #initialize!public! !
+!Lubricentro class categoriesFor: #nextId!public! !
 

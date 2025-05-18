@@ -1,7 +1,7 @@
 "Filed out from Dolphin Smalltalk 7"!
 
 Object subclass: #OrdenDeCompra
-	instanceVariableNames: 'id empleado_id proveedor_id articulo_id cantidad precio'
+	instanceVariableNames: 'id empleado_id proveedor_id articulo_id cantidad precio fecha'
 	classVariableNames: 'UltimoID'
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -10,64 +10,73 @@ OrdenDeCompra comment: ''!
 !OrdenDeCompra categoriesForClass!Kernel-Objects! !
 !OrdenDeCompra methodsFor!
 
-GetArticuloId
+getArticuloId
     ^articulo_id.!
 
-GetCantidad
+getCantidad
     ^cantidad.!
 
-GetEmpleadoId
+getEmpleadoId
     ^empleado_id.!
 
-GetId
+getFecha
+    ^fecha.!
+
+getId
         ^id.!
 
-GetPrecio
+getPrecio
     ^precio.!
 
-GetProveedorId
+getProveedorId
     ^proveedor_id.!
 
-initialize: unEmpleado proveedor_id: unProveedor articulo_id: unArticulo cantidad: unaCantidad precio: unPrecio
+initialize: unEmpleado proveedor_id: unProveedor articulo_id: unArticulo cantidad: unCantidad precio: unPrecio fecha: unFecha
 	id := OrdenDeCompra nextId.  "Asigna el siguiente ID autoincremental"
 	empleado_id := unEmpleado.
 	proveedor_id := unProveedor.
 	articulo_id := unArticulo.
-        cantidad := unaCantidad.
-	precio := unPrecio.!
+        cantidad := unCantidad.
+	precio := unPrecio.
+	fecha := unFecha.!
 
-SetArticuloId: unArticulo
+setArticuloId: unArticulo
 	articulo_id := unArticulo.!
 
-SetCantidadId: unaCantidad
-	cantidad := unaCantidad.!
+setCantidadId: unCantidad
+	cantidad := unCantidad.!
 
-SetEmpleadoid: unEmpleado
+setEmpleadoid: unEmpleado
 	empleado_id := unEmpleado.!
 
-SetPrecioId: unPrecio
+setFecha: unFecha
+	fecha := unFecha.!
+
+setPrecio: unPrecio
 	precio := unPrecio.!
 
-SetProveedorId: unProveedor
+setProveedorId: unProveedor
 	proveedor_id := unProveedor.! !
-!OrdenDeCompra categoriesFor: #GetArticuloId!public! !
-!OrdenDeCompra categoriesFor: #GetCantidad!public! !
-!OrdenDeCompra categoriesFor: #GetEmpleadoId!public! !
-!OrdenDeCompra categoriesFor: #GetId!public! !
-!OrdenDeCompra categoriesFor: #GetPrecio!public! !
-!OrdenDeCompra categoriesFor: #GetProveedorId!public! !
-!OrdenDeCompra categoriesFor: #initialize:proveedor_id:articulo_id:cantidad:precio:!public! !
-!OrdenDeCompra categoriesFor: #SetArticuloId:!public! !
-!OrdenDeCompra categoriesFor: #SetCantidadId:!public! !
-!OrdenDeCompra categoriesFor: #SetEmpleadoid:!public! !
-!OrdenDeCompra categoriesFor: #SetPrecioId:!public! !
-!OrdenDeCompra categoriesFor: #SetProveedorId:!public! !
+!OrdenDeCompra categoriesFor: #getArticuloId!public! !
+!OrdenDeCompra categoriesFor: #getCantidad!public! !
+!OrdenDeCompra categoriesFor: #getEmpleadoId!public! !
+!OrdenDeCompra categoriesFor: #getFecha!public! !
+!OrdenDeCompra categoriesFor: #getId!public! !
+!OrdenDeCompra categoriesFor: #getPrecio!public! !
+!OrdenDeCompra categoriesFor: #getProveedorId!public! !
+!OrdenDeCompra categoriesFor: #initialize:proveedor_id:articulo_id:cantidad:precio:fecha:!public! !
+!OrdenDeCompra categoriesFor: #setArticuloId:!public! !
+!OrdenDeCompra categoriesFor: #setCantidadId:!public! !
+!OrdenDeCompra categoriesFor: #setEmpleadoid:!public! !
+!OrdenDeCompra categoriesFor: #setFecha:!public! !
+!OrdenDeCompra categoriesFor: #setPrecio:!public! !
+!OrdenDeCompra categoriesFor: #setProveedorId:!public! !
 
 !OrdenDeCompra class methodsFor!
 
-CrearConEmpleado: unEmpleado proveedor_id: unProveedor articulo_id: unArticulo cantidad: unaCantidad precio: unPrecio 
+CrearConEmpleado: unEmpleado proveedor_id: unProveedor articulo_id: unArticulo cantidad: unCantidad precio: unPrecio  fecha: unFecha
 	^ self new
-		initialize: unEmpleado  proveedor_id: unProveedor articulo_id: unArticulo cantidad: unaCantidad precio: unPrecio;
+		initialize: unEmpleado  proveedor_id: unProveedor articulo_id: unArticulo cantidad: unCantidad precio: unPrecio fecha:unFecha;
 		yourself.
 !
 
@@ -78,7 +87,7 @@ nextId
     UltimoID isNil ifTrue: [ UltimoID := 0 ].  
     UltimoID := UltimoID + 1.
     ^UltimoID.! !
-!OrdenDeCompra class categoriesFor: #CrearConEmpleado:proveedor_id:articulo_id:cantidad:precio:!public! !
+!OrdenDeCompra class categoriesFor: #CrearConEmpleado:proveedor_id:articulo_id:cantidad:precio:fecha:!public! !
 !OrdenDeCompra class categoriesFor: #initialize!public! !
 !OrdenDeCompra class categoriesFor: #nextId!public! !
 

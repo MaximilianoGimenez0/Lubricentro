@@ -1,7 +1,7 @@
 "Filed out from Dolphin Smalltalk 7"!
 
 Persona subclass: #Cliente
-	instanceVariableNames: 'direccion mail'
+	instanceVariableNames: 'direccion email'
 	classVariableNames: ''
 	poolDictionaries: ''
 	classInstanceVariableNames: ''!
@@ -10,19 +10,37 @@ Cliente comment: ''!
 !Cliente categoriesForClass!Kernel-Objects! !
 !Cliente methodsFor!
 
-GetDireccion
+getDireccion
 	^ direccion.!
 
-GetMail
-	^ mail.!
+getEmail
+	^email!
 
-SetDireccion: unDireccion
+initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono email: unEmail direccion: unaDireccion
+	super
+		initialize: unNombre
+		apellido: unApellido
+		dni: unDni
+		telefono: unTelefono.
+	email := unEmail.
+	direccion := unaDireccion.!
+
+setDireccion: unDireccion
 	direccion := unDireccion.!
 
-SetMail: unMail
-	mail := unMail.! !
-!Cliente categoriesFor: #GetDireccion!public! !
-!Cliente categoriesFor: #GetMail!public! !
-!Cliente categoriesFor: #SetDireccion:!public! !
-!Cliente categoriesFor: #SetMail:!public! !
+setEmail: unEmail
+	email := unEmail! !
+!Cliente categoriesFor: #getDireccion!public! !
+!Cliente categoriesFor: #getEmail!public! !
+!Cliente categoriesFor: #initialize:apellido:dni:telefono:email:direccion:!public! !
+!Cliente categoriesFor: #setDireccion:!public! !
+!Cliente categoriesFor: #setEmail:!public! !
+
+!Cliente class methodsFor!
+
+crearCliente: unNombre apellido: unApellido dni: unDni telefono: unTelefono email: unEmail direccion: unaDireccion
+	^ self new
+		initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono email: unEmail direccion: unaDireccion ;
+		yourself.! !
+!Cliente class categoriesFor: #crearCliente:apellido:dni:telefono:email:direccion:!public! !
 

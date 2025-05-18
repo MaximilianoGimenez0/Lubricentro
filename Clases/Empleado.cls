@@ -10,27 +10,46 @@ Empleado comment: ''!
 !Empleado categoriesForClass!Kernel-Objects! !
 !Empleado methodsFor!
 
-GetCargo
+getCargo
 	^ cargo.!
 
-GetFechaIngreso
+getFechaIngreso
 	^ fecha_ingreso.!
 
-GetSueldo
+getSueldo
 	^ sueldo.!
 
-SetCargo: unCargo
+initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
+	super
+		initialize: unNombre
+		apellido: unApellido
+		dni: unDni
+		telefono: unTelefono.
+	fecha_ingreso := unFechaIngreso.
+	sueldo := unSueldo.
 	cargo := unCargo.!
 
-SetFechaIngreso: unFechaIngreso
+setCargo: unCargo
+	cargo := unCargo.!
+
+setFechaIngreso: unFechaIngreso
 	fecha_ingreso := unFechaIngreso.!
 
-SetSueldo: unSueldo
+setSueldo: unSueldo
 	sueldo := unSueldo.! !
-!Empleado categoriesFor: #GetCargo!public! !
-!Empleado categoriesFor: #GetFechaIngreso!public! !
-!Empleado categoriesFor: #GetSueldo!public! !
-!Empleado categoriesFor: #SetCargo:!public! !
-!Empleado categoriesFor: #SetFechaIngreso:!public! !
-!Empleado categoriesFor: #SetSueldo:!public! !
+!Empleado categoriesFor: #getCargo!public! !
+!Empleado categoriesFor: #getFechaIngreso!public! !
+!Empleado categoriesFor: #getSueldo!public! !
+!Empleado categoriesFor: #initialize:apellido:dni:telefono:fecha_ingreso:sueldo:cargo:!public! !
+!Empleado categoriesFor: #setCargo:!public! !
+!Empleado categoriesFor: #setFechaIngreso:!public! !
+!Empleado categoriesFor: #setSueldo:!public! !
+
+!Empleado class methodsFor!
+
+crearEmpleado: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
+	^ self new
+		initialize: unNombre apellido: unApellido dni:unDni telefono:unTelefono fecha_ingreso:unFechaIngreso sueldo:unSueldo cargo:unCargo;
+		yourself.! !
+!Empleado class categoriesFor: #crearEmpleado:apellido:dni:telefono:fecha_ingreso:sueldo:cargo:!public! !
 

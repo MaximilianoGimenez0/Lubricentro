@@ -13,19 +13,19 @@ Venta comment: ''!
 getArticuloId
     ^articulo_id .!
 
-GetCantidad
+getCantidad
 	^ cantidad.!
 
-GetClienteId
+getClienteId
 	^ cliente_id.!
 
-GetEmpleadoId
+getEmpleadoId
 	^ empleado_id.!
 
 getId
     ^id.!
 
-GetMonto
+getMonto
 	^ monto.!
 
 initialize: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMonto cantidad: unCantidad
@@ -39,31 +39,31 @@ initialize: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMo
 	
 !
 
-SetArticuloId: unArticulo
+setArticuloId: unArticulo
 	articulo_id := unArticulo.!
 
-SetCantidad: unCantidad
+setCantidad: unCantidad
 	cantidad := unCantidad.!
 
-SetClienteId: unCliente
+setClienteId: unCliente
 	cliente_id := unCliente.!
 
-SetEmpleadoId: unEmpleado
+setEmpleadoId: unEmpleado
 	empleado_id := unEmpleado.!
 
 setMonto: unMonto
 	monto := unMonto.! !
 !Venta categoriesFor: #getArticuloId!public! !
-!Venta categoriesFor: #GetCantidad!public! !
-!Venta categoriesFor: #GetClienteId!public! !
-!Venta categoriesFor: #GetEmpleadoId!public! !
+!Venta categoriesFor: #getCantidad!public! !
+!Venta categoriesFor: #getClienteId!public! !
+!Venta categoriesFor: #getEmpleadoId!public! !
 !Venta categoriesFor: #getId!public! !
-!Venta categoriesFor: #GetMonto!public! !
+!Venta categoriesFor: #getMonto!public! !
 !Venta categoriesFor: #initialize:cliente_id:articulo_id:monto:cantidad:!public! !
-!Venta categoriesFor: #SetArticuloId:!public! !
-!Venta categoriesFor: #SetCantidad:!public! !
-!Venta categoriesFor: #SetClienteId:!public! !
-!Venta categoriesFor: #SetEmpleadoId:!public! !
+!Venta categoriesFor: #setArticuloId:!public! !
+!Venta categoriesFor: #setCantidad:!public! !
+!Venta categoriesFor: #setClienteId:!public! !
+!Venta categoriesFor: #setEmpleadoId:!public! !
 !Venta categoriesFor: #setMonto:!public! !
 
 !Venta class methodsFor!

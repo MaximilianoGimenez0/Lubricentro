@@ -14,7 +14,7 @@ getElaboracion
 	^ elaboracion!
 
 getId
-	^ id!
+	^id!
 
 getMaxStock
 	^ max_stock!
@@ -45,6 +45,19 @@ initialize
 	vencimiento := nil.
 	elaboracion := nil.!
 
+initialize: unTipo stock: unStock min_Stock: unMinStock max_stock:unMaxStock precio:unPrecio vencimiento:unVencimiento elaboracion:unElaboracion
+	id:= Articulo nextId. "Asigna el siguiente ID autoincremental"
+	tipo:= unTipo.
+	stock:= unStock.
+	min_stock := unMinStock.
+	max_stock := unMaxStock.
+	precio := unPrecio.
+	vencimiento:= unVencimiento.
+	elaboracion:= unElaboracion.!
+
+setElaboracion: unElaboracion
+	elaboracion := unElaboracion.!
+
 setMaxStock: unMaximo
 	max_stock := unMaximo!
 
@@ -53,7 +66,16 @@ setMinStock: unMinimo
 
 setPrecio: unPrecio
 	precio := unPrecio
-	! !
+	!
+
+setStock: unStock
+	stock := unStock!
+
+setTipo: unTipo
+	tipo := unTipo!
+
+setVencimiento: unVencimiento
+	vencimiento := unVencimiento.! !
 !Articulo categoriesFor: #getElaboracion!public! !
 !Articulo categoriesFor: #getId!public! !
 !Articulo categoriesFor: #getMaxStock!public! !
@@ -63,20 +85,32 @@ setPrecio: unPrecio
 !Articulo categoriesFor: #getTipo!public! !
 !Articulo categoriesFor: #getVencimiento!public! !
 !Articulo categoriesFor: #initialize!public! !
+!Articulo categoriesFor: #initialize:stock:min_Stock:max_stock:precio:vencimiento:elaboracion:!public! !
+!Articulo categoriesFor: #setElaboracion:!public! !
 !Articulo categoriesFor: #setMaxStock:!public! !
 !Articulo categoriesFor: #setMinStock:!public! !
 !Articulo categoriesFor: #setPrecio:!public! !
+!Articulo categoriesFor: #setStock:!public! !
+!Articulo categoriesFor: #setTipo:!public! !
+!Articulo categoriesFor: #setVencimiento:!public! !
 
 !Articulo class methodsFor!
 
-Initialize
+crearConTipo: unTipo stock: unStock min_Stock: unMinimo max_stock:unMaximo precio:unPrecio vencimiento:unVencimiento elaboracion:unElaboracion
+	^ self new  
+		initialize: unTipo stock: unStock min_Stock: unMinimo max_stock:unMaximo precio:unPrecio vencimiento:unVencimiento elaboracion:unElaboracion;  
+		yourself.  
+!
+
+initialize
 	UltimoID := 0.
 	!
 
-NextId
-	UltimoID isNil ifTrue: [ UltimoID := 0 ].
-	UltimoID := UltimoID + 1.
-	^UltimoID.! !
-!Articulo class categoriesFor: #Initialize!public! !
-!Articulo class categoriesFor: #NextId!public! !
+nextId
+    UltimoID isNil ifTrue: [ UltimoID := 0 ].  
+    UltimoID := UltimoID + 1.
+    ^UltimoID.! !
+!Articulo class categoriesFor: #crearConTipo:stock:min_Stock:max_stock:precio:vencimiento:elaboracion:!public! !
+!Articulo class categoriesFor: #initialize!public! !
+!Articulo class categoriesFor: #nextId!public! !
 
