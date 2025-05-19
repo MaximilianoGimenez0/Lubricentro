@@ -25,6 +25,7 @@ getNombre
 getTelefono
 	^ telefono.!
 
+
 initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	id := Persona nextId.
 	nombre := unNombre.
@@ -33,7 +34,7 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	telefono := unTelefono.!
 
 setApellido: unApellido
-	apellido := unApellido.!
+apellido := unApellido.!
 
 setDNI: unDni
 	dni := unDni.!
@@ -43,6 +44,7 @@ setNombre: unNombre
 
 setTelefono: unTelefono
 	telefono := unTelefono.! !
+
 !Persona categoriesFor: #getApellido!public! !
 !Persona categoriesFor: #getDNI!public! !
 !Persona categoriesFor: #getId!public! !
