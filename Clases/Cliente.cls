@@ -11,7 +11,8 @@ Cliente comment: ''!
 !Cliente methodsFor!
 
 getDireccion
-	^direccion!
+	^ direccion.!
+
 
 getEmail
 	^email!
@@ -26,7 +27,8 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono email:
 	direccion := unaDireccion.!
 
 setDireccion: unDireccion
-	direccion := unDireccion!
+	direccion := unDireccion.!
+
 
 setEmail: unEmail
 	email := unEmail! !

@@ -14,16 +14,17 @@ getApellido
 	^ apellido.!
 
 getDNI
-	^dni!
+	^ dni.!
 
 getId
-	^id!
+	^ id.!
 
 getNombre
-	^nombre!
+	^ nombre.!
 
 getTelefono
-	^telefono!
+	^ telefono.!
+
 
 initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	id := Persona nextId.
@@ -33,16 +34,17 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono
 	telefono := unTelefono.!
 
 setApellido: unApellido
-	apellido := unApellido!
+apellido := unApellido.!
 
 setDNI: unDni
-	dni := unDni!
+	dni := unDni.!
 
 setNombre: unNombre
-	nombre := unNombre!
+	nombre := unNombre.!
 
 setTelefono: unTelefono
-	telefono := unTelefono! !
+	telefono := unTelefono.! !
+
 !Persona categoriesFor: #getApellido!public! !
 !Persona categoriesFor: #getDNI!public! !
 !Persona categoriesFor: #getId!public! !

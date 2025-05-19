@@ -11,13 +11,14 @@ Empleado comment: ''!
 !Empleado methodsFor!
 
 getCargo
-	^cargo!
+	^ cargo.!
 
 getFechaIngreso
-	^fecha_ingreso!
+	^ fecha_ingreso.!
 
 getSueldo
-	^sueldo!
+	^ sueldo.!
+
 
 initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
 	super
@@ -30,13 +31,14 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_
 	cargo := unCargo.!
 
 setCargo: unCargo
-	cargo := unCargo!
+	cargo := unCargo.!
 
 setFechaIngreso: unFechaIngreso
-	fecha_ingreso := unFechaIngreso!
+	fecha_ingreso := unFechaIngreso.!
 
 setSueldo: unSueldo
-	sueldo := unSueldo! !
+	sueldo := unSueldo.! !
+
 !Empleado categoriesFor: #getCargo!public! !
 !Empleado categoriesFor: #getFechaIngreso!public! !
 !Empleado categoriesFor: #getSueldo!public! !
@@ -49,7 +51,8 @@ setSueldo: unSueldo
 
 crearEmpleado: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
 	^ self new
-		initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo;
+
+initialize: unNombre apellido: unApellido dni:unDni telefono:unTelefono fecha_ingreso:unFechaIngreso sueldo:unSueldo cargo:unCargo;
 		yourself.! !
 !Empleado class categoriesFor: #crearEmpleado:apellido:dni:telefono:fecha_ingreso:sueldo:cargo:!public! !
 
