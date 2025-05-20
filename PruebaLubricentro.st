@@ -1,5 +1,5 @@
 "Realizamos una pequeña prueba para corroborar que todo funcione correctamente"
-
+|empleado1 proveedor1 articulo1 cliente1 lubricentro|
 "Creamos un empleado"
 
 empleado1 := Empleado crearEmpleado: 'Daniela'
@@ -42,7 +42,7 @@ cliente1. 			"INSPECT"
 
 
 "Creamos el lubricentro"
-lubricentro:= Lubricentro crearBasicoConNombre: 'YML LubriCentro ' descripcion: 'Tienda especializada en la venta de lubricantes, aceites, filtros y artículos varios para todo tipo de vehículos'.
+lubricentro:= Lubricentro CrearBasicoConNombre: 'YML LubriCentro ' descripcion: 'Tienda especializada en la venta de lubricantes, aceites, filtros y artículos varios para todo tipo de vehículos'.
 
 "Agregamos el cliente, empleado, proveedor y artículo al lubricentro"
 lubricentro getClientes add: cliente1.

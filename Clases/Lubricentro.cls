@@ -59,6 +59,13 @@ initializeConNombre: unNombre descripcion: unaDescrip listaVentas: unaListVent l
 	listaEmpleados := unaListEmple.
 	listaClientes := unaListClien.!
 
+realizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id precio: unPrecio
+    | orden |
+    
+	orden := OrdenDeCompra CrearConEmpleado: empleado_id proveedor_id: proveedor_id articulo_id: articulo_id cantidad: cantidad precio: unPrecio .
+
+	listaOrdenesCompra add: orden.!
+
 realizarOrdenCompraEmpleado: empleado_id articulo: articulo_id cantidad: cantidad proveedor: proveedor_id precio: unPrecio fecha: unFecha
     | orden |
     
@@ -97,10 +104,6 @@ setDecripcion: unaDescripcion
 	descripcion := unaDescripcion.
 !
 
-SetDecripcion: unaDescripcion
-	descripcion := unaDescripcion.
-!
-
 setEmpleados: unaLista
 	listaEmpleados := unaLista.
 !
@@ -109,9 +112,6 @@ setId: unId
 	id := unId.!
 
 setNombre: unNombre
-	nombre := unNombre.!
-
-SetNombre: unNombre
 	nombre := unNombre.!
 
 setOrdenesCompra: unaLista
@@ -135,35 +135,33 @@ setVentas: unaLista
 !Lubricentro categoriesFor: #getVentas!accessing!public! !
 !Lubricentro categoriesFor: #initialize!public! !
 !Lubricentro categoriesFor: #initializeConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
+!Lubricentro categoriesFor: #realizarOrdenCompraEmpleado:articulo:cantidad:proveedor:precio:!public! !
 !Lubricentro categoriesFor: #realizarOrdenCompraEmpleado:articulo:cantidad:proveedor:precio:fecha:!public! !
 !Lubricentro categoriesFor: #realizarVentaCliente:empleado:articulo:cantidad:!public! !
 !Lubricentro categoriesFor: #setArticulos:!public! !
 !Lubricentro categoriesFor: #setClientes:!public! !
 !Lubricentro categoriesFor: #setDecripcion:!public! !
-!Lubricentro categoriesFor: #SetDecripcion:!public! !
 !Lubricentro categoriesFor: #setEmpleados:!public! !
 !Lubricentro categoriesFor: #setId:!public! !
 !Lubricentro categoriesFor: #setNombre:!public! !
-!Lubricentro categoriesFor: #SetNombre:!public! !
 !Lubricentro categoriesFor: #setOrdenesCompra:!public! !
 !Lubricentro categoriesFor: #setProveedores:!public! !
 !Lubricentro categoriesFor: #setVentas:!public! !
 
 !Lubricentro class methodsFor!
 
-crearBasicoConNombre: unNombre descripcion: unaDescripcion
-	^ self new
-		initializeConNombre: unNombre
+CrearBasicoConNombre: unNombre descripcion: unaDescripcion
+	^self new
+		InitializeConNombre: unNombre
 		descripcion: unaDescripcion
 		listaVentas: OrderedCollection new
 		listaArticulos: OrderedCollection new
 		listaOrdenesCompra: OrderedCollection new
 		listaProveedores: OrderedCollection new
 		listaEmpleados: OrderedCollection new
-		listaClientes: OrderedCollection new
-!
+		listaClientes: OrderedCollection new!
 
-crearConNombre: unNombre 
+CrearConNombre: unNombre 
     descripcion: unaDescrip 
     listaVentas: unaListVent 
     listaArticulos: unaListArt 
@@ -182,15 +180,16 @@ crearConNombre: unNombre
 		listaClientes: unaListClien
 !
 
-initialize
-	UltimoID := 0.!
+Initialize
+	UltimoID := 0.
+!
 
-nextId
+NextId
 	UltimoID isNil ifTrue: [ UltimoID := 0 ].
 	UltimoID := UltimoID + 1.
 	^UltimoID.! !
-!Lubricentro class categoriesFor: #crearBasicoConNombre:descripcion:!public! !
-!Lubricentro class categoriesFor: #crearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
-!Lubricentro class categoriesFor: #initialize!public! !
-!Lubricentro class categoriesFor: #nextId!public! !
+!Lubricentro class categoriesFor: #CrearBasicoConNombre:descripcion:!public! !
+!Lubricentro class categoriesFor: #CrearConNombre:descripcion:listaVentas:listaArticulos:listaOrdenesCompra:listaProveedores:listaEmpleados:listaClientes:!public! !
+!Lubricentro class categoriesFor: #Initialize!public! !
+!Lubricentro class categoriesFor: #NextId!public! !
 
