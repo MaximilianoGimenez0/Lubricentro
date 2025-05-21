@@ -11,7 +11,6 @@ empleado1 := Empleado crearEmpleado: 'Daniela'
 				    cargo: 'Vendedora'.
 empleado1. 		"INSPECT "
 
-
 "Creamos un proveedor"
 proveedor1:= Proveedor crearConNombre: 'Distribuidora del sur S.A.'
 				    numero: '011-4444-5555'
@@ -75,21 +74,21 @@ cliente1 := Cliente crearCliente: 'Martin'
 			    telefono: '26487501'
 			    email: 'martin.gutierrez@mail.com'
 			    direccion: 'Quilmes, Provincia de Buenos Aires'.
-cliente1. 			"INSPECT"
+cliente1. 		    "INSPECT"
 
 
 "Creamos el lubricentro"
 lubricentro:= Lubricentro crearBasicoConNombre: 'YML LubriCentro ' descripcion: 'Tienda especializada en la venta de lubricantes, aceites, filtros y artículos varios para todo tipo de vehículos'.
 
 "Agregamos el cliente, empleado, proveedor y artículo al lubricentro"
-lubricentro getClientes add: cliente1.
-lubricentro getEmpleados add: empleado1.
-lubricentro getProveedores add: proveedor1.
-lubricentro getArticulos add: articulo1.
-lubricentro getArticulos add: articulo2.
-lubricentro getArticulos add: articulo3.
-lubricentro getArticulos add: articulo4.
-lubricentro getArticulos add: articulo5.
+lubricentro agregarCliente: cliente1.
+lubricentro agregarEmpleado: empleado1.
+lubricentro agregarProveedor: proveedor1.
+lubricentro agregarArticulo: articulo1.
+lubricentro agregarArticulo: articulo2.
+lubricentro agregarArticulo: articulo3.
+lubricentro agregarArticulo: articulo4.
+lubricentro agregarArticulo: articulo5.
 
 
 lubricentro.		"INSPECT"
@@ -122,10 +121,10 @@ lubricentro.  "INSPECT --> LISTA DE VENTAS"
 tiposArticulos := lubricentro getArticulos collect: [:articulo | articulo getTipo].
 tiposArticulos inspect.
 
-stockMenor30 :=lubricentro getArticulos select: [:articulo | articulo getStock < 30].
+stockMenor30 :=lubricentro getArticulos select: [:articulo | articulo getStock < 30]."Cumple con la coleccion"
 stockMenor30 inspect.
 
-stockNoMenor30 :=lubricentro getArticulos reject: [:articulo | articulo getStock < 30].
+stockNoMenor30 :=lubricentro getArticulos reject: [:articulo | articulo getStock < 30]. "No cumplen con la coleccion"
 stockNoMenor30 inspect. 
 
 detectarAceite := lubricentro getArticulos detect: [:articulo | articulo getTipo = 'Aceite 10W40'].
