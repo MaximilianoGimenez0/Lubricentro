@@ -10,6 +10,18 @@ Lubricentro comment: ''!
 !Lubricentro categoriesForClass!Kernel-Objects! !
 !Lubricentro methodsFor!
 
+agregarArticulo: unArticulo
+    self getArticulos add: unArticulo.!
+
+agregarCliente: unCliente
+    self getClientes add: unCliente.!
+
+agregarEmpleado: unEmpleado
+    self getEmpleados add: unEmpleado.!
+
+agregarProveedor: unProveedor
+    self getProveedores add: unProveedor.!
+
 getArticulos
     ^ listaArticulos!
 
@@ -124,6 +136,10 @@ setProveedores: unaLista
 setVentas: unaLista
 	listaVentas := unaLista.
 ! !
+!Lubricentro categoriesFor: #agregarArticulo:!public! !
+!Lubricentro categoriesFor: #agregarCliente:!public! !
+!Lubricentro categoriesFor: #agregarEmpleado:!public! !
+!Lubricentro categoriesFor: #agregarProveedor:!public! !
 !Lubricentro categoriesFor: #getArticulos!accessing!public! !
 !Lubricentro categoriesFor: #getClientes!accessing!public! !
 !Lubricentro categoriesFor: #getDescripcion!accessing!public! !
