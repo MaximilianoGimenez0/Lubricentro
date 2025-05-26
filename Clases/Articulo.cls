@@ -55,6 +55,17 @@ initialize: unTipo stock: unStock min_Stock: unMinStock max_stock:unMaxStock pre
 	vencimiento:= unVencimiento.
 	elaboracion:= unElaboracion.!
 
+printString
+    ^ 'ID: ', id printString, 
+      ' | Tipo: ', tipo, 
+      ' | Stock: ', stock printString, 
+      ' | Stock Minimo: ', min_stock printString, 
+      ' | Stock Maximo: ', max_stock printString, 
+      ' | Precio: ', precio printString, 
+      ' | Vencimiento: ', vencimiento printString,  "Convertir Date a String"
+      ' | Fecha de Elaboracion: ', elaboracion printString.  
+!
+
 setElaboracion: unElaboracion
 	elaboracion := unElaboracion.!
 
@@ -86,6 +97,7 @@ setVencimiento: unVencimiento
 !Articulo categoriesFor: #getVencimiento!public! !
 !Articulo categoriesFor: #initialize!public! !
 !Articulo categoriesFor: #initialize:stock:min_Stock:max_stock:precio:vencimiento:elaboracion:!public! !
+!Articulo categoriesFor: #printString!public! !
 !Articulo categoriesFor: #setElaboracion:!public! !
 !Articulo categoriesFor: #setMaxStock:!public! !
 !Articulo categoriesFor: #setMinStock:!public! !

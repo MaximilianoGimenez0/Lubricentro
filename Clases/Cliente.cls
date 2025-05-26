@@ -13,7 +13,6 @@ Cliente comment: ''!
 getDireccion
 	^ direccion.!
 
-
 getEmail
 	^email!
 
@@ -26,15 +25,23 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono email:
 	email := unEmail.
 	direccion := unaDireccion.!
 
+printString
+    ^ 'ID: ', id printString, 
+      ' | Nombre: ', self getNombre , ' ', self getApellido ,
+      ' | DNI: ', self getDNI,
+      ' | Teléfono: ', self getTelefono ,
+      ' | Email: ', self getEmail ,
+      ' | Dirección: ', self getDireccion.!
+
 setDireccion: unDireccion
 	direccion := unDireccion.!
-
 
 setEmail: unEmail
 	email := unEmail! !
 !Cliente categoriesFor: #getDireccion!public! !
 !Cliente categoriesFor: #getEmail!public! !
 !Cliente categoriesFor: #initialize:apellido:dni:telefono:email:direccion:!public! !
+!Cliente categoriesFor: #printString!public! !
 !Cliente categoriesFor: #setDireccion:!public! !
 !Cliente categoriesFor: #setEmail:!public! !
 
