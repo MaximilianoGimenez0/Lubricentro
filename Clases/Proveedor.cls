@@ -37,6 +37,13 @@ initialize: unNombre numero: unNumero direccion: unDireccion cuit: unCuit
 	cuit := unCuit.
 !
 
+printString
+    ^ 'ID: ', id printString,
+      ' | Nombre: ', nombre,
+      ' | Teléfono: ', numero,
+      ' | Dirección: ', direccion,
+      ' | Cuit: ', cuit!
+
 setCuit: unCuit
 	cuit := unCuit.!
 
@@ -55,6 +62,7 @@ setNumero: unNumero
 !Proveedor categoriesFor: #getNumero!public! !
 !Proveedor categoriesFor: #id!public! !
 !Proveedor categoriesFor: #initialize:numero:direccion:cuit:!public! !
+!Proveedor categoriesFor: #printString!public! !
 !Proveedor categoriesFor: #setCuit:!public! !
 !Proveedor categoriesFor: #setDireccion:!public! !
 !Proveedor categoriesFor: #setNombre:!public! !

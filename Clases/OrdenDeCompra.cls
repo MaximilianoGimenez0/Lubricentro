@@ -40,6 +40,15 @@ initialize: unEmpleado proveedor_id: unProveedor articulo_id: unArticulo cantida
 	precio := unPrecio.
 	fecha := unFecha.!
 
+printString
+	^ 'Orden ID: ', id printString,
+	  ' | Empleado ID: ', empleado_id printString,
+	  ' | Artículo ID: ', articulo_id printString,
+	  ' | Cantidad: ', cantidad printString,
+	  ' | Proveedor ID: ', proveedor_id printString,
+	  ' | Precio: ', precio printString,
+	  ' | Fecha: ', fecha printString.!
+
 setArticuloId: unArticulo
 	articulo_id := unArticulo.!
 
@@ -65,6 +74,7 @@ setProveedorId: unProveedor
 !OrdenDeCompra categoriesFor: #getPrecio!public! !
 !OrdenDeCompra categoriesFor: #getProveedorId!public! !
 !OrdenDeCompra categoriesFor: #initialize:proveedor_id:articulo_id:cantidad:precio:fecha:!public! !
+!OrdenDeCompra categoriesFor: #printString!public! !
 !OrdenDeCompra categoriesFor: #setArticuloId:!public! !
 !OrdenDeCompra categoriesFor: #setCantidadId:!public! !
 !OrdenDeCompra categoriesFor: #setEmpleadoid:!public! !

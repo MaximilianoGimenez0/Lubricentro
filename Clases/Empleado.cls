@@ -19,7 +19,6 @@ getFechaIngreso
 getSueldo
 	^ sueldo.!
 
-
 initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
 	super
 		initialize: unNombre
@@ -30,6 +29,16 @@ initialize: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_
 	sueldo := unSueldo.
 	cargo := unCargo.!
 
+printString
+    ^ 'ID: ', id printString,
+      ' | Nombre: ', self getNombre , ' ', self getApellido ,
+      ' | DNI: ', self getDNI,
+      ' | Teléfono: ', self getTelefono ,
+      ' | Fecha De Ingreso: ', (self getFechaIngreso printString),  "Convertir Date a String"
+      ' | Sueldo: ', self getSueldo printString,
+      ' | Cargo: ', self getCargo.
+!
+
 setCargo: unCargo
 	cargo := unCargo.!
 
@@ -38,11 +47,11 @@ setFechaIngreso: unFechaIngreso
 
 setSueldo: unSueldo
 	sueldo := unSueldo.! !
-
 !Empleado categoriesFor: #getCargo!public! !
 !Empleado categoriesFor: #getFechaIngreso!public! !
 !Empleado categoriesFor: #getSueldo!public! !
 !Empleado categoriesFor: #initialize:apellido:dni:telefono:fecha_ingreso:sueldo:cargo:!public! !
+!Empleado categoriesFor: #printString!public! !
 !Empleado categoriesFor: #setCargo:!public! !
 !Empleado categoriesFor: #setFechaIngreso:!public! !
 !Empleado categoriesFor: #setSueldo:!public! !
@@ -51,8 +60,7 @@ setSueldo: unSueldo
 
 crearEmpleado: unNombre apellido: unApellido dni: unDni telefono: unTelefono fecha_ingreso: unFechaIngreso sueldo: unSueldo cargo: unCargo
 	^ self new
-
-initialize: unNombre apellido: unApellido dni:unDni telefono:unTelefono fecha_ingreso:unFechaIngreso sueldo:unSueldo cargo:unCargo;
+		initialize: unNombre apellido: unApellido dni:unDni telefono:unTelefono fecha_ingreso:unFechaIngreso sueldo:unSueldo cargo:unCargo;
 		yourself.! !
 !Empleado class categoriesFor: #crearEmpleado:apellido:dni:telefono:fecha_ingreso:sueldo:cargo:!public! !
 

@@ -39,6 +39,15 @@ initialize: unEmpleado cliente_id: unCliente articulo_id: unArticulo monto: unMo
 	
 !
 
+printString
+	^ 'Orden ID: ', id printString,
+	  ' | Empleado ID: ', empleado_id printString,
+	  ' | Cliente ID: ', cliente_id printString,
+	  ' | Artículo ID: ', articulo_id printString,
+	  ' | Monto: ', monto printString,
+	  ' | Cantidad: ', cantidad printString,
+	  ' | Fecha: ', Date today printString.!
+
 setArticuloId: unArticulo
 	articulo_id := unArticulo.!
 
@@ -60,6 +69,7 @@ setMonto: unMonto
 !Venta categoriesFor: #getId!public! !
 !Venta categoriesFor: #getMonto!public! !
 !Venta categoriesFor: #initialize:cliente_id:articulo_id:monto:cantidad:!public! !
+!Venta categoriesFor: #printString!public! !
 !Venta categoriesFor: #setArticuloId:!public! !
 !Venta categoriesFor: #setCantidad:!public! !
 !Venta categoriesFor: #setClienteId:!public! !
