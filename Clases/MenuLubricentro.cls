@@ -10,6 +10,81 @@ MenuLubricentro comment: ''!
 !MenuLubricentro categoriesForClass!Kernel-Objects! !
 !MenuLubricentro methodsFor!
 
+articulosPorTipo
+
+| tiposArticulos |
+
+Transcript clear.
+
+tiposArticulos := lubricentro getArticulos collect: [:art | art getTipo].
+
+Transcript show: 'Tipos de artículos:'; cr.
+
+tiposArticulos do: [:tipo |
+    Transcript show: tipo; cr.
+].
+
+MessageBox warning: 'Presione Aceptar para continuar.'.
+!
+
+consultarPorStock
+    | seguirConsultando stockLimite opcionIngresada  articulosFiltrados stockIngresado |
+
+seguirConsultando := true.
+
+[seguirConsultando] whileTrue: [
+
+    Transcript clear.
+    Transcript show: 'Ingrese el valor de stock para filtrar'.
+    stockIngresado := Prompter prompt: 'Stock: '.
+    ((stockIngresado isNil) or: [stockIngresado isEmpty]) ifTrue: [  "Esto obliga al usuario a ingresar un valor "
+        MessageBox warning: 'Debe ingresar un valor.'.
+        ^self
+    ].
+   Transcript clear.
+    stockLimite := stockIngresado asNumber.
+
+"Un mini menu"
+    Transcript show: '1 - Artículos con stock menor o igual al ingresado'; cr.
+    Transcript show: '2 - Artículos con stock mayor al ingresado'; cr.
+
+
+	[
+	    opcionIngresada := Prompter prompt: 'Ingrese una opción de filtro'.
+
+	    ((opcionIngresada = '1') or: [opcionIngresada = '2'])
+		ifTrue: [true] "Si la opcion es valida sale del while"
+		ifFalse: [
+		    MessageBox warning: 'Opción inválida. Debe ingresar 1 o 2.'.   "Si la opcion es falsa vuelve continua en el bucle y le pide de nuevo la opcion"
+		    false
+		].
+	] whileFalse.
+
+    opcionIngresada = '1' ifTrue: [
+        articulosFiltrados := lubricentro getArticulos select: [:art | art getStock <= stockLimite]. "Devuelve los que cumple la condicion"
+    ].
+    opcionIngresada = '2' ifTrue: [
+        articulosFiltrados := lubricentro getArticulos reject: [:art | art getStock <= stockLimite]. "Devuelve los que no cumple la condicion"
+    ].
+
+    Transcript clear.
+    Transcript show: 'Artículos filtrados:'; cr.
+    articulosFiltrados isEmpty
+        ifTrue: [Transcript show: 'No se encontraron artículos con ese criterio.'; cr.]
+        ifFalse: [
+            articulosFiltrados do: [:art |
+                Transcript show: art printString; cr.
+            ].
+        ].
+
+    MessageBox warning: 'Ingrese Aceptar para continuar'.
+
+
+    (MessageBox confirm: '¿Desea realizar otra consulta?')
+        ifTrue: [seguirConsultando := true]
+        ifFalse: [seguirConsultando := false].
+].!
+
 contarVentasDeUnEmpleado
 | empleadoID empleado cantidadVentas ventasPorEmpleado seguirConsultando |
 
@@ -17,14 +92,12 @@ seguirConsultando := true.
 
 [seguirConsultando] whileTrue: [
 
-    "Mostrar empleados disponibles"
     Transcript clear.
     Transcript show: 'Empleados Disponibles:'; cr.
     lubricentro getEmpleados do: [:empl |
         Transcript show: 'ID: ', empl getId printString, ' - ', empl getNombre, ' ', empl getApellido; cr.
     ].
 
-    "Pedir y validar ID del empleado"
     [
         empleadoID := (Prompter prompt: 'Ingrese el ID del Empleado:') asNumber.
         empleado := lubricentro getEmpleados detect: [:e | e getId = empleadoID ] ifNone: [ nil ].
@@ -34,25 +107,24 @@ seguirConsultando := true.
         ] ifFalse: [ true ]
     ] whileFalse.
 
-    "Crear diccionario de conteo de ventas"
-    ventasPorEmpleado := Dictionary new.
+ventasPorEmpleado := Dictionary new. 
+lubricentro getVentas do: [:venta |
+    | idEmpleado |
+    idEmpleado := venta getEmpleadoId.
+    
+    ventasPorEmpleado at: idEmpleado ifAbsentPut: [0]. 
+    
+    ventasPorEmpleado at: idEmpleado put: ((ventasPorEmpleado at: idEmpleado) + 1).
+].
 
-    lubricentro getVentas do: [:venta |
-        | idEmpleado |
-        idEmpleado := venta getEmpleadoId.
-        ventasPorEmpleado at: idEmpleado ifAbsentPut: [0].
-        ventasPorEmpleado at: idEmpleado put: ((ventasPorEmpleado at: idEmpleado) + 1).
-    ].
+cantidadVentas := ventasPorEmpleado at: empleadoID ifAbsent: [0]. 
 
-    cantidadVentas := ventasPorEmpleado at: empleadoID ifAbsent: [0].
 
-    "Mostrar resultado"
     Transcript clear.
     Transcript show: 'El empleado con ID ', empleadoID printString, ' realizó ', cantidadVentas printString, ' ventas.'; cr.
 
     MessageBox warning: 'El empleado con ID ', empleadoID printString, ' realizó ', cantidadVentas printString, ' ventas.'.
 
-    "Consultar si desea hacer otra búsqueda"
     (MessageBox confirm: '¿Desea consultar otro empleado?')
         ifTrue: [seguirConsultando := true]
         ifFalse: [seguirConsultando := false].
@@ -246,12 +318,15 @@ salir := false.
         Transcript show: '5) Realizar Orden de Compra'; cr.
         Transcript show: '6) Realizar Venta'; cr.
         Transcript show: '7) Cantidad de ventas por empleado '; cr.
-        Transcript show: '8) Salir'; cr.
-        opcion := Prompter prompt: 'Selecciona una opción (1-8):'.
+        Transcript show: '8) Lista de Tipos de Articulo '; cr.
+	Transcript show: '9) Consultar por stock '; cr.
+        Transcript show: '10) Ordenar Productos por el de mayor stock '; cr.
+        Transcript show: '11) Salir'; cr.
+        opcion := Prompter prompt: 'Selecciona una opción (1-11):'.
 
         opcionNum := opcion asNumber ifNil: [0].  "Convierte la opcion recibida en un número, de no ser posible lo setea en 0 "
 
-        (((1 to: 8) includes: opcionNum)
+        (((1 to: 11) includes: opcionNum)
             ifTrue: [
                 opcionNum = 1 ifTrue: [ self subMenuAgregar ].
                 opcionNum = 2 ifTrue: [ self subMenuEliminar ].
@@ -260,7 +335,10 @@ salir := false.
                 opcionNum = 5 ifTrue: [ self efectuarOrdenCompra ].
                 opcionNum = 6 ifTrue: [ self efectuarVenta ].
                 opcionNum = 7 ifTrue: [ self contarVentasDeUnEmpleado ].
-                opcionNum = 8 ifTrue: [ Transcript show: 'Programa finalizado'. salir := true ].
+                opcionNum = 8 ifTrue: [ self articulosPorTipo ].
+                opcionNum = 9 ifTrue: [ self  consultarPorStock ].
+                opcionNum = 10 ifTrue: [ self  ordenarPorSTockMayor ].
+                opcionNum = 11 ifTrue: [ Transcript show: 'Programa finalizado'. salir := true ].
             ]
             ifFalse: [
                 MessageBox warning: 'Opción inválida. Intente nuevamente.'.
@@ -272,6 +350,22 @@ salir := false.
     ].
 
 
+!
+
+ordenarPorSTockMayor
+    | articulosOrdenados |
+
+    Transcript clear.
+    Transcript show: 'Artículos ordenados por stock (mayor a menor):'; cr.
+
+    articulosOrdenados := (lubricentro getArticulos) asSortedCollection: [:a :b |
+        a getStock > b getStock
+    ].
+
+    articulosOrdenados do: [:art |
+        Transcript show: art printString; cr.
+    ].
+MessageBox warning: 'Ingrese Aceptar para continuar'.
 !
 
 subMenuAgregar
@@ -641,11 +735,14 @@ subMenuMostrar
     ].
   ].
 ! !
+!MenuLubricentro categoriesFor: #articulosPorTipo!public! !
+!MenuLubricentro categoriesFor: #consultarPorStock!public! !
 !MenuLubricentro categoriesFor: #contarVentasDeUnEmpleado!public! !
 !MenuLubricentro categoriesFor: #efectuarOrdenCompra!public! !
 !MenuLubricentro categoriesFor: #efectuarVenta!public! !
 !MenuLubricentro categoriesFor: #initialize:!public! !
 !MenuLubricentro categoriesFor: #menuPrincipal!public! !
+!MenuLubricentro categoriesFor: #ordenarPorSTockMayor!public! !
 !MenuLubricentro categoriesFor: #subMenuAgregar!public! !
 !MenuLubricentro categoriesFor: #subMenuEliminar!public! !
 !MenuLubricentro categoriesFor: #subMenuListar!public! !
