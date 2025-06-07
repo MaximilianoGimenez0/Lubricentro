@@ -86,7 +86,7 @@ seguirConsultando := true.
 ].!
 
 contarVentasDeUnEmpleado
-| empleadoID empleado cantidadVentas ventasPorEmpleado seguirConsultando |
+| empleadoID empleado ventasPorEmpleado seguirConsultando |
 
 seguirConsultando := true.
 
@@ -107,28 +107,30 @@ seguirConsultando := true.
         ] ifFalse: [ true ]
     ] whileFalse.
 
-ventasPorEmpleado := Dictionary new. 
-lubricentro getVentas do: [:venta |
-    | idEmpleado |
-    idEmpleado := venta getEmpleadoId.
-    
-    ventasPorEmpleado at: idEmpleado ifAbsentPut: [0]. 
-    
-    ventasPorEmpleado at: idEmpleado put: ((ventasPorEmpleado at: idEmpleado) + 1).
-].
+    ventasPorEmpleado := Dictionary new. 
+    lubricentro getVentas do: [:venta |
+        | idEmpleado |
+        idEmpleado := venta getEmpleadoId.
+        ventasPorEmpleado at: idEmpleado ifAbsentPut: [0]. 
+        ventasPorEmpleado at: idEmpleado put: ((ventasPorEmpleado at: idEmpleado) + 1).
+    ].
 
-cantidadVentas := ventasPorEmpleado at: empleadoID ifAbsent: [0]. 
+    "El empleado se registra con valor 0 si no hizo ventas"
+    ventasPorEmpleado at: empleadoID ifAbsentPut: [0].
 
-
-    Transcript clear.
-    Transcript show: 'El empleado con ID ', empleadoID printString, ' realizó ', cantidadVentas printString, ' ventas.'; cr.
-
-    MessageBox warning: 'El empleado con ID ', empleadoID printString, ' realizó ', cantidadVentas printString, ' ventas.'.
+"Impresion de diccionario"
+	     Transcript cr.
+             Transcript show: 'El empleado ', empleado getNombre, ' ', empleado getApellido.
+             Transcript nextPutAll: ' (ID: ', empleadoID printString, ') realizó: ';
+             nextPutAll: (ventasPorEmpleado at: empleadoID) printString;
+             nextPutAll: ' ventas.'; cr.
 
     (MessageBox confirm: '¿Desea consultar otro empleado?')
         ifTrue: [seguirConsultando := true]
         ifFalse: [seguirConsultando := false].
-].!
+].
+
+!
 
 efectuarOrdenCompra
 |seguirConsultando empleadoID proveedorID articuloID cantidad precio empleado articulo proveedor orden nuevoStockValido nuevoStock|
